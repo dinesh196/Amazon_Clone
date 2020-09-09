@@ -14,12 +14,14 @@ function Home() {
 
         <div className="home_row">
           <Product
+            id="2121212"
             title="The Lean Startup"
             price={29.99}
             image="https://m.media-amazon.com/images/I/81jgCiNJPUL._AC_UY436_FMwebp_QL65_.jpg"
             rating={5}
           />
           <Product
+            id="1212213"
             title="The Lean Startup"
             price={29.99}
             image="https://m.media-amazon.com/images/I/81jgCiNJPUL._AC_UY436_FMwebp_QL65_.jpg"
@@ -28,12 +30,14 @@ function Home() {
         </div>
         <div className="home_row">
           <Product
+            id="838303"
             title="The Lean Startup"
             price={29.99}
             image="https://m.media-amazon.com/images/I/81jgCiNJPUL._AC_UY436_FMwebp_QL65_.jpg"
             rating={5}
           />
           <Product
+            id="9384398"
             title="The Lean Startup"
             price={29.99}
             image="https://m.media-amazon.com/images/I/81jgCiNJPUL._AC_UY436_FMwebp_QL65_.jpg"
@@ -41,6 +45,7 @@ function Home() {
           />
           {/* {/* <Product /> */}
           <Product
+            id="408349"
             title="The Lean Startup"
             price={29.99}
             image="https://m.media-amazon.com/images/I/81jgCiNJPUL._AC_UY436_FMwebp_QL65_.jpg"
@@ -50,6 +55,7 @@ function Home() {
         </div>
         <div className="home_row">
           <Product
+            id="49027583"
             title="The Lean Startup"
             price={29.99}
             image="https://m.media-amazon.com/images/I/81jgCiNJPUL._AC_UY436_FMwebp_QL65_.jpg"
