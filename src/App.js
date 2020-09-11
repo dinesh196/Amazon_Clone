@@ -16,11 +16,13 @@ function App() {
       console.log("User is >>>", authUser);
 
       if (authUser) {
+        // Logged in
         dispatch({
           type: "SET_USER",
           user: authUser
         });
       } else {
+        // Logged out
         dispatch({
           type: "SET_USER",
           user: null
