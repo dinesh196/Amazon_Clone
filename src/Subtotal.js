@@ -27,7 +27,7 @@ function Subtotal() {
         value={getBasketTotal(basket)} //Do this
         displayType="text"
         thousandSeperator={true}
-        prefix={"$"}
+        prefix={"₹"}
       />
       <button onClick={e => history.push("/payment")}>
         Proceed to Checkout

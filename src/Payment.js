@@ -7,6 +7,7 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import CurrencyFormat from "react-currency-format";
 import { getBasketTotal } from "./reducer";
 import axios from "./axios";
+import { db } from "./firebase";
 
 // import { Link } from "@material-ui/core";
 function Payment() {
@@ -22,18 +23,20 @@ function Payment() {
   const elemets = useElements();
 
   useEffect(() => {
+    // generate the special stripe secret which allows us to charge a customer
     const getClientSecret = async () => {
       const response = await axios({
         method: "post",
+        // Stripe expects the total in a currencies subunits
         url: `/payments/create?total=${getBasketTotal(basket) * 100}`
       });
       setClientSecret(response.data.clientSecret);
     };
-    getClientSecret();
-    //   return () => {
 
-    //   }
+    getClientSecret();
   }, [basket]);
+
+  console.log("The secrete is >>>> ", clientSecret);
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -47,9 +50,23 @@ function Payment() {
       })
       .then(({ paymentIntent }) => {
         //Payment Confirmation
+
+        db.collection("users")
+          .doc(user?.uid)
+          .collection("orders")
+          .doc(paymentIntent.id)
+          .set({
+            basket: basket,
+            amount: paymentIntent.amount,
+            created: paymentIntent.created
+          });
+
         setSucceeded(true);
         setError(null);
         setProcessing(false);
+        dispatch({
+          type: "EMPTY_BASKET"
+        });
         history.replace("/orders");
       });
   };
@@ -102,7 +119,7 @@ function Payment() {
                   value={getBasketTotal(basket)}
                   displayType={"text"}
                   thousandSeperator={true}
-                  prefix={"$"}
+                  prefix={"₹"}
                 />
                 <button disabled={processing || disabled || succeeded}>
                   <span>{processing ? <p>Processing</p> : "Buy now"}</span>
